@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose'),
     Note = mongoose.model('Notes'),
-    mongodbUrl = 'mongodb://localhost/Tododb';
+    mongodbUrl = 'mongodb://admin:admin@ds155509.mlab.com:55509/heroku_47d6mk9g';
 
 exports.read_a_note = function(req, res) {
     mongoose.connect(mongodbUrl, {useMongoClient: true});

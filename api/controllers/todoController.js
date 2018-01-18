@@ -31,11 +31,15 @@ exports.create_a_task = function(req, res) {
 
 exports.read_a_task = function(req, res) {
   mongoose.connect(mongodbUrl, {useMongoClient: true});
+  if(req.isAuthenticated()) {
   Task.findById(req.params.taskId, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
   });
+  } else {
+    res.json({message: 'Log in to see your notes!'})
+  }
   mongoose.connection.close();
 };
 
@@ -52,9 +56,7 @@ exports.update_a_task = function(req, res) {
 
 exports.delete_a_task = function(req, res) {
   mongoose.connect(mongodbUrl, {useMongoClient: true});
-  Task.remove({
-    _id: req.params.taskId
-  }, function(err, task) {
+  Task.remove({_id: req.params.taskId}, function(err, task) {
     if (err)
       res.send(err);
     res.json({ message: 'Task successfully deleted' });

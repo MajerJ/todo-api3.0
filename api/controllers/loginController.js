@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     Q = require('q'),   
     User = mongoose.model('Users');
 
-var mongodbUrl = 'mongodb://localhost/Tododb';
+var mongodbUrl = 'mongodb://admin:admin@ds155509.mlab.com:55509/heroku_47d6mk9g';
 
 exports.localReg = function (username, password) {
 var deferred = Q.defer();

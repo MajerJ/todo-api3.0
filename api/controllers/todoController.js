@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose'),
     Task = mongoose.model('Tasks'),
-    mongodbUrl = 'mongodb://localhost/Tododb';
+    mongodbUrl = 'mongodb://admin:admin@ds155509.mlab.com:55509/heroku_47d6mk9g';
 
 exports.list_all_tasks = function(req, res) {
   mongoose.connect(mongodbUrl, {useMongoClient: true});

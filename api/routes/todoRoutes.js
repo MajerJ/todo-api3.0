@@ -2,6 +2,7 @@
 module.exports = function(app) {
   var todoList = require('../controllers/todoController'),
       userList = require('../controllers/loginController'),
+      noteList = require('../controllers/notesController'),
       passport = require('passport');
 
   app.route('/tasks')
@@ -10,8 +11,15 @@ module.exports = function(app) {
   app.route('/tasks/:userId')
     .get(todoList.list_all_tasks);
 
+  app.route('/notes/:taskId')
+    .get(noteList.read_a_note)
+    .post(noteList.create_a_note)
+    .delete(noteList.delete_a_note);
+  
+  app.route('/task/:taskId')
+    .get(todoList.read_a_task);
+
   app.route('/tasks/:taskId')
-    .get(todoList.read_a_task)
     .put(todoList.update_a_task)
     .delete(todoList.delete_a_task);
 
